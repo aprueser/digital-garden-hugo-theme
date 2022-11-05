@@ -33,3 +33,11 @@ html.dark *::-webkit-scrollbar-thumb {
 html.dark * {
   scrollbar-color: theme("colors.slate.400") theme("colors.slate.600");
 }
+
+/* Search */
+#search-query::-webkit-search-cancel-button,
+#search-query::-webkit-search-decoration,
+#search-query::-webkit-search-results-button,
+#search-query::-webkit-search-results-decoration {
+  @apply hidden;
+}

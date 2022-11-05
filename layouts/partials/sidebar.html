@@ -12,6 +12,9 @@
       class="dark-mode-toggle p-2 rounded border dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700">
       {{- partial "icon/sunIcon.html" . -}}
     </button>
+    <button id="search-button" aria-label="search-button" class="p2 rounded border dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700">
+      {{- partial "icon/search.html" . -}}
+    </button>
   </p>
 
   {{ $permalink := cond (eq (len .RelPermalink) 1) .RelPermalink (strings.TrimRight "/" .RelPermalink) }}
@@ -33,10 +36,6 @@
   </ul>
 
   <div class="flex-1"></div>
-
-  {{ if .Site.Params.newsletter }}
-  {{- partial "newsletter-widget.html" . -}}
-  {{ end }}
 
   <ul class="list-none flex flex-wrap justify-center gap-1 pt-2 border-t border-slate-200 dark:border-slate-600">
     {{ range .Site.Menus.social }}

@@ -1,27 +1,36 @@
-{{ if .Site.Params.enableSearch }}
-<label class="mb-2 block px-2">
-  <span></span>
-  <input type="text" placeholder="Search articles" class="searchInput bg-white rounded px-2 py-1 w-full border" />
-</label>
-<script>
-  const searchElt = document.querySelector('.searchInput')
-  if (searchElt) {
-    searchElt.addEventListener('input', evt => {
-      const value = evt.target.value || '';
-
-      const articles = document.querySelectorAll('.article')
-      if (!value) {
-        articles.forEach(article => article.classList.remove('hidden'))
-      } else {
-        articles.forEach(article => article.classList.add('hidden'))
-        Array.from(articles).filter(article => {
-          const title = article.querySelector('h3')
-          if (!title) return false;
-
-          return title.textContent.toLowerCase().includes(value.toLowerCase())
-        }).forEach(article => article.classList.remove('hidden'))
-      }
-    })
-  }
-</script>
-{{ end }}
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="{{ "" | absLangURL }}"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          {{- partial "icon/search.html" . -}}
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search Terms"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (esc)"
+      >
+        {{- partial "icon/closeIcon.html" . -}}
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+      </ul>
+    </section>
+  </div>
+</div>

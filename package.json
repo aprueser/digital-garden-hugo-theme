@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Build your own personal Digital Garden effortlessly with this Hugo theme",
   "scripts": {
+    "postinstall": "vendor-copy",
     "dev:css": "NODE_ENV=development ./node_modules/tailwindcss/lib/cli.js -i ./themes/digitalgarden/assets/css/tailwind.css -o ./static/css/main.css -w",
     "build:css": "NODE_ENV=production ./node_modules/tailwindcss/lib/cli.js -i ./themes/digitalgarden/assets/css/tailwind.css -o ./static/css/main.css --minify",
     "develop": "concurrently  \"npm run dev:css\" \"npm run dev:hugo\"",
@@ -18,6 +19,14 @@
     "tailwindcss": "^3.1.7"
   },
   "devDependencies": {
-    "concurrently": "^6.4.0"
-  }
+    "concurrently": "^6.4.0",
+    "fuse.js": "^6.6.2",
+    "vendor-copy": "^3.0.1"
+  },
+  "devVendorCopy": [
+     {
+       "from": "node_modules/fuse.js/dist/fuse.min.js",
+       "to": "assets/lib/fuse/fuse.min.js"
+     }
+  ]
 }

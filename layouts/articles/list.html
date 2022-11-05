@@ -2,12 +2,12 @@
 
 <div class="flex h-screen relative">
 
-  <section
-    class="w-full h-full md:min-w-[400px] md:w-1/4 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col py-3 overflow-y-auto scroll-area">
-    <a href="{{ .Permalink }}">
-      <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">{{ .Title }}</h2>
-    </a>
-    {{- partial "search.html" . -}}
+  <section class="w-full h-full md:min-w-[400px] md:w-1/4 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col py-3 overflow-y-auto scroll-area">
+    <div class="grid grid-cols-6 mb-5">
+      <a class="col-start-1 col-end-2" href="{{ .Permalink }}">
+        <h2 class="font-bold text-2xl pt-2 py-1 pl-12 pr-3 md:px-3">{{ .Title }}</h2>
+      </a>
+    </div>
     <div class="space-y-2.5">
       {{ range .Data.Pages -}}
       <a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href="{{ .RelPermalink }}">
