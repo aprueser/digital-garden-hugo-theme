@@ -37,6 +37,19 @@
 
   <div class="flex-1"></div>
 
+  <div class="flex justify-between">
+    <div>
+      <p class="text-xs text-slate-400 dark:text-slate-400">
+          &copy;
+          {{ now.Format "2006" }}
+          {{ .Site.Params.copyright | markdownify | emojify }}
+      </p>
+      <p class="text-xs text-slate-400 dark:text-slate-400">Powered by
+         <a class="hover:underline hover:text-slate-500" href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
+      </p>
+    </div>
+  </div>
+
   <ul class="list-none flex flex-wrap justify-center gap-1 pt-2 border-t border-slate-200 dark:border-slate-600">
     {{ range .Site.Menus.social }}
     <li>
